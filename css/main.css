@@ -1,0 +1,45 @@
+body{
+
+}
+
+h1{}
+h2{}
+h3{}
+
+.co-white{
+    color: white;
+}
+.co-black{
+    color: #000;
+}
+.co-dark{
+    color: #6A4406;
+}
+.co-light{
+    color: #EB6328;
+}
+.co-light-1{
+    color: #F3A82E;
+}
+.co-light-2{
+    color: #F6BD19;
+}
+
+.to-up{}
+.to-left{}
+.to-right{}
+.to-down{}
+
+
+.sz-full{
+    width: 100%;
+}
+.sz-half{
+    width: 50%;
+}
+.sz-third{
+    width: 33.33%;
+}
+.sz-fourth{
+    width: 25%;
+}
