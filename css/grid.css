@@ -78,10 +78,10 @@ a{text-decoration: none}
 .table-column{display:table-column}
 .table-capt{display:table-caption}
 
-.valign-baseline{vertical-align:baseline}
-.valign-bottom{vertical-align:bottom}
-.valign-middle{vertical-align:middle}
-.valign-top{vertical-align:top}
+.valign-baseline{vertical-align:baseline !important}
+.valign-bottom{vertical-align:bottom !important}
+.valign-middle{vertical-align:middle !important}
+.valign-top{vertical-align:top !important}
 
 .select-off{-webkit-user-select: none; -moz-user-select: none; user-select: none}
 

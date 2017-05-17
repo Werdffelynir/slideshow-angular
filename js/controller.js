@@ -1,14 +1,38 @@
-
 var App = new NamespaceApplication();
 
-// help funcs
-App.Template = function () {
-    var template = App.query('template');
-    if (!template) throw Error('Not find node elements of templates');
-    return App.search('[data-template]', 'data-template', template.content);
+// HELPERS FUNCTIONS
+
+/*
+ * <template hidden>
+ *     <div data-template="head">...</div>
+ *     <div data-template="menu">...</div>
+ * </template>
+ *
+ * getTemplate ()           // return an object with all templates
+ * getTemplate ('head')     // return context of templates by name 'head'
+ *
+ * @param name      String, attribute value 'data-template'
+ * @returns {Element|boolean|Node|*}
+ */
+
+var getTemplate = function (name) {
+    var templateContent,
+        parent = document,
+        selector = 'template',
+        templateElement = App.query(selector, parent);
+
+    if (!templateElement)
+        throw Error('Not find element by selector "' + selector + '"');
+
+    templateContent = App.search('[data-template]', 'data-template', templateElement.content);
+    return name ? templateContent[name] : templateContent;
 };
 
+
+
+
 App.namespace('PageLoader', function () {
+
     /** @namespace App.PageLoader */
     var __ = {
         data: {},
@@ -26,64 +50,70 @@ App.namespace('PageLoader', function () {
     };
 
     __.load = function (url) {
-        App.ajax({method: 'POST', url: '/page/' + url + '.html', data: {}}, function (status, data) {
-            console.log(url, status, data);
+        var fullUrl = '/page/' + url + '.html';
+        App.ajax({method: 'POST', url: fullUrl, data: {}}, function (status, data) {
+            __.iter ++;
 
             if (status === 200) {
-                __.iter ++;
                 __.data[url] = data;
+
                 if (__.iter === __.count) {
                     __.callback.call(null, __.data);
                 }
-            } else { throw Error('Error on loading page. Status: ' + status); }
+            } else {
+                var errmsg = App.format('Can not load the page: {0}; Status: {1};', [fullUrl, status]);
+                throw Error(errmsg);
+            }
         });
     };
-
-    __.c = function () { };
-
-    __.d = function () { };
 
     return __;
 });
 
 App.namespace('Controller', function () {
+
     /** @namespace App.Controller */
     var __ = {
         node: {},
-        page: {},
-        htmlData: null,
+        pageData: {},
+        renderData: document.createDocumentFragment()
     };
 
     /** @namespace App.Controller.init */
     __.init = function () {
 
+        __.node['root'] = App.query('.slides[data-section="root"]');
+
         App.PageLoader.loadPageFiles([
 
             'itis',
-            'start',
+            'history',
             'semver',
             'stat',
             'avtonext',
             'ecommerce',
             'dev',
-            'ang-plus',
-            'ang-min'
+            'pluses',
+            'minuses'
 
         ], function (data) {
-            __.page = data;
-            __.htmlData = document.createDocumentFragment();
+            __.pageData = data;
 
-            __.htmlData.appendChild(App.createElement('section'), {}, __.page['itis']);
-            __.htmlData.appendChild(App.createElement('section'), {}, __.page['start']);
-            __.htmlData.appendChild(App.createElement('section'), {}, __.page['semver']);
-            __.htmlData.appendChild(App.createElement('section'), {}, __.page['stat']);
-            __.htmlData.appendChild(App.createElement('section'), {}, __.page['avtonext']);
-            __.htmlData.appendChild(App.createElement('section'), {}, __.page['ecommerce']);
-            __.htmlData.appendChild(App.createElement('section'), {}, __.page['dev']);
-            __.htmlData.appendChild(App.createElement('section'), {}, __.page['ang-plus']);
-            __.htmlData.appendChild(App.createElement('section'), {}, __.page['ang-min']);
+            var addSection = function (name) {
+                __.renderData.appendChild( App.createElement('section', null, (data[name] === undefined) ? 'DATA NOT FOUND' : data[name]) ); };
 
-            console.log('PAGE DATA: ', __.htmlData);
+            addSection ( 'itis' );
+            addSection ( 'history' );
+            addSection ( 'semver' );
+            addSection ( 'stat' );
+            addSection ( 'avtonext' );
+            addSection ( 'ecommerce' );
+            addSection ( 'dev' );
+            addSection ( 'pluses' );
+            addSection ( 'minuses' );
+
+            App.inject(__.node['root'],  __.renderData);
+
             App.Controller.initSlider();
         });
     };
@@ -134,11 +164,11 @@ App.namespace('Controller', function () {
 
 App.domLoaded(function () {
 
-    var _data = [];
+    var save_data = [];
     if (App.Storage.get('tasks')) {
-        _data = App.Storage.get('tasks');
+        save_data = App.Storage.get('tasks');
     }
 
-    App.Controller.init(_data);
+    App.Controller.init(save_data);
 
 });

@@ -1,5 +1,5 @@
-body{
-
+*{
+    font-family: "sans", "sans-serif",  "Ubuntu Condensed", "Ubuntu" !important;
 }
 
 h1{}
@@ -7,28 +7,93 @@ h2{}
 h3{}
 
 .co-white{
-    color: white;
+    color: #FFFFFF;
 }
 .co-black{
-    color: #000;
+    color: #000000;
 }
 .co-dark{
-    color: #6A4406;
+    color: #404040;
 }
 .co-light{
     color: #EB6328;
 }
-.co-light-1{
+.co-sand{
     color: #F3A82E;
 }
-.co-light-2{
+.co-orange{
     color: #F6BD19;
 }
+.co-red{
+    color: #f62800;
+}
+.co-blue{
+    color: #5855f7;
+}
+
+
+
+
+.style-white{
+    padding: 20px;
+    color: #000000;
+    background-color: #FFFFFF;
+}
+.style-black{
+    padding: 20px;
+    color: #FFFFFF;
+    background-color: #000000;
+}
+
+.style-orange{
+    padding: 20px;
+    color: #F6BD19;
+    background-color: #000000;
+}
+
+.style-orange-inv{
+    padding: 20px;
+    color: #000000;
+    background-color: #F6BD19;
+}
+
+.style-sand{
+    padding: 20px;
+    color: #F3A82E;
+    background-color: #6A4406;
+}
+.style-sand-inv{
+    padding: 20px;
+    color: #6A4406;
+    background-color: #F3A82E;
+}
+
+
+
+.border-white{
+    border: 5px solid #FFFFFF !important;}
+.border-black{
+    border: 5px solid #000000 !important;}
+.border-orange{
+    border: 5px solid #F6BD19 !important;}
+.border-sand{
+    border: 5px solid #F3A82E !important;}
+
+
+.txt-left {
+    text-align: left !important;
+}
+
 
 .to-up{}
 .to-left{}
 .to-right{}
 .to-down{}
+
+.pad-top{ padding-top: 20px !important; }
+.pad-left20{ padding-left: 20px !important; }
+.pad-bottom20{ padding-bottom: 20px !important; }
+.pad-right20{ padding-right: 20px !important; }
 
 
 .sz-full{
@@ -42,4 +107,14 @@ h3{}
 }
 .sz-fourth{
     width: 25%;
+}
+
+
+
+
+.font-small{
+    font-size: 80% !important;
+}
+.font-micro{
+    font-size: 60% !important;
 }
