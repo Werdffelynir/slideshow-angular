@@ -2,33 +2,40 @@ var App = new NamespaceApplication();
 
 // HELPERS FUNCTIONS
 
-/*
+/**
  * <template hidden>
  *     <div data-template="head">...</div>
  *     <div data-template="menu">...</div>
  * </template>
  *
- * getTemplate ()           // return an object with all templates
- * getTemplate ('head')     // return context of templates by name 'head'
+ * Template ()           // return an object with all templates
+ * Template ('head')     // return context of templates by name 'head'
  *
  * @param name      String, attribute value 'data-template'
  * @returns {Element|boolean|Node|*}
  */
-
-var getTemplate = function (name) {
+var Template = function (name) {
     var templateContent,
-        parent = document,
-        selector = 'template',
-        templateElement = App.query(selector, parent);
+        parent = Template.parent,
+        selector = Template.selector,
+        templateElement = App.query(selector, App.createElement('div', null, parent));
 
     if (!templateElement)
-        throw Error('Not find element by selector "' + selector + '"');
+        throw Error('Not find element. selector: "' + selector + '" name: "' + name + '"');
 
-    templateContent = App.search('[data-template]', 'data-template', templateElement.content);
+    templateContent = App.search('[data-template]', 'data-template', templateElement.content ? templateElement.content : templateElement);
     return name ? templateContent[name] : templateContent;
 };
+Template.parent = document;
+Template.selector = 'template';
 
 
+// Load source file for Template
+App.ajax({url:'/template/common.html'}, function (status, response) {
+    if (status === 200) {
+        Template.parent = App.str2node(response);
+    } else { throw Error ('Request to get /template/common.html is failed'); }
+});
 
 
 App.namespace('PageLoader', function () {
@@ -70,6 +77,7 @@ App.namespace('PageLoader', function () {
     return __;
 });
 
+
 App.namespace('Controller', function () {
 
     /** @namespace App.Controller */
@@ -98,6 +106,8 @@ App.namespace('Controller', function () {
 
         ], function (data) {
             __.pageData = data;
+
+            console.log(Template('head'));
 
             var addSection = function (name) {
                 __.renderData.appendChild( App.createElement('section', null, (data[name] === undefined) ? 'DATA NOT FOUND' : data[name]) ); };

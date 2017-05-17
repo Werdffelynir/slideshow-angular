@@ -13,7 +13,7 @@ h3{}
     color: #000000;
 }
 .co-dark{
-    color: #404040;
+    color: #494949;
 }
 .co-light{
     color: #EB6328;
@@ -35,35 +35,35 @@ h3{}
 
 
 .style-white{
-    padding: 20px;
+    padding: 20px !important;
     color: #000000;
     background-color: #FFFFFF;
 }
 .style-black{
-    padding: 20px;
+    padding: 20px !important;
     color: #FFFFFF;
     background-color: #000000;
 }
 
 .style-orange{
-    padding: 20px;
+    padding: 20px !important;
     color: #F6BD19;
     background-color: #000000;
 }
 
 .style-orange-inv{
-    padding: 20px;
+    padding: 20px !important;
     color: #000000;
     background-color: #F6BD19;
 }
 
 .style-sand{
-    padding: 20px;
+    padding: 20px !important;
     color: #F3A82E;
     background-color: #6A4406;
 }
 .style-sand-inv{
-    padding: 20px;
+    padding: 20px !important;
     color: #6A4406;
     background-color: #F3A82E;
 }
@@ -98,6 +98,9 @@ h3{}
 
 .sz-full{
     width: 100%;
+}
+.sz-75{
+    width: 75%;
 }
 .sz-half{
     width: 50%;
