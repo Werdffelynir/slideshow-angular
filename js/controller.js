@@ -92,7 +92,7 @@ App.namespace('Controller', function () {
 
         __.node['root'] = App.query('.slides[data-section="root"]');
 
-        App.PageLoader.loadPageFiles([
+        var loadPageNames = [
 
             'itis',
             'history',
@@ -104,23 +104,18 @@ App.namespace('Controller', function () {
             'pluses',
             'minuses'
 
-        ], function (data) {
+        ];
+
+        App.PageLoader.loadPageFiles(loadPageNames, function (data) {
             __.pageData = data;
 
-            console.log(Template('head'));
-
             var addSection = function (name) {
-                __.renderData.appendChild( App.createElement('section', null, (data[name] === undefined) ? 'DATA NOT FOUND' : data[name]) ); };
+                __.renderData.appendChild( App.createElement('section', null, (data[name] === undefined) ? 'DATA NOT FOUND' : data[name]) );
+            };
 
-            addSection ( 'itis' );
-            addSection ( 'history' );
-            addSection ( 'semver' );
-            addSection ( 'stat' );
-            addSection ( 'avtonext' );
-            addSection ( 'ecommerce' );
-            addSection ( 'dev' );
-            addSection ( 'pluses' );
-            addSection ( 'minuses' );
+            loadPageNames.map (function (item) {
+                addSection ( item );
+            });
 
             App.inject(__.node['root'],  __.renderData);
 
