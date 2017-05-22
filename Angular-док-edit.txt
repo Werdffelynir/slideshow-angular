@@ -96,7 +96,9 @@ Angular 7 Сентябрь 2018
 Статистика (на сентябрь 2016 года)
 
 [/var/www/slideshow.loc/images/libscore.png]
-Согласно аналитическому сервису JavaScript Libscore, AngularJS используется на сайтах Wolfram Alpha, NBC, Walgreens, Intel, Sprint, ABC News и приблизительно 12 000 других сайтов из 1 миллиона, протестированных в октябре 2016 года. 
+Согласно аналитическому сервису JavaScript Libscore, AngularJS используется на сайтах Wolfram Alpha, NBC, Walgreens, Intel, Sprint, ABC News и приблизительно 12 000 других сайтов из 1 миллиона, протестированных в октябре 2016 года. (1.5%)
+
+Согласно аналитическому сервису JavaScript Libscore, AngularJS используется приблизительно d 12 000 сайтов из 1 миллиона.
 AngularJS - шестой по счету самый популярный проект всех времен на GitHub.
 
 [/var/www/slideshow.loc/images/statistics-community.png]
