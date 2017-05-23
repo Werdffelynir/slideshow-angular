@@ -144,7 +144,7 @@ AngularJS разработчики используют фреймворк не 
 
 -------------------------------------------------------------
 [/var/www/slideshow.loc/images/angular1-to-angular2.jpg]
-Сравнение AngularJS v 1 и Angular 2 +
+Сравнение AngularJS и Angular
 
 AngularJS версии 1 и Angular 2 + это два совершенно разных продукта. (популярное сравнение Java и JavaScript).
 

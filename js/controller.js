@@ -102,7 +102,8 @@ App.namespace('Controller', function () {
             'ecommerce',
             'dev',
             'pluses',
-            'minuses'
+            'minuses',
+            'enemy'
 
         ];
 
